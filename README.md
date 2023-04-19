@@ -1,1 +1,1 @@
-# godot-prototypes
+# prototypes
