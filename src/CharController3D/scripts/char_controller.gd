@@ -7,16 +7,21 @@ extends CharacterBody3D
 @export var speed: float = 14.0
 @export var fall_acceleration: float = 75.0
 
-@onready var camera_pivot: Node3D = get_node("../CameraPivot")
+@onready var pivot: Node3D = $BodyPivot
+@onready var camera_pivot: Node3D = $CameraPivot
 
 var target_velocity: Vector3 = Vector3.ZERO
 
 
 func _physics_process(delta):
 	# Get input and look in that direction
-	var direction: Vector3 = get_input_vector()
+	var input: Vector3 = get_input_vector()
+	var cam_transform = camera_pivot.get_global_transform()
+	var direction: Vector3 = (cam_transform.basis.z * input.z) + \
+			(cam_transform.basis.x * input.x)
+	direction.y = pivot.position.y
 	if direction != Vector3.ZERO:
-		$Pivot.look_at(position + direction, Vector3.UP)
+		pivot.look_at(position + direction, Vector3.UP)
 	
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
@@ -45,11 +50,7 @@ func get_input_vector() -> Vector3:
 		input.x -= 1
 	
 	if input != Vector3.ZERO:
-		#input = input.normalized()
-		var r = camera_pivot.rotation
-		print(r)
-		print(input.normalized())
-		input = (input * r.x).normalized()
+		input = input.normalized()
 	
 	return input
 

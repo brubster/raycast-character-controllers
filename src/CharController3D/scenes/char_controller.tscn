@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2x3yxpscr0x7"]
+[gd_scene load_steps=8 format=3 uid="uid://d2x3yxpscr0x7"]
 
 [ext_resource type="Script" path="res://CharController3D/scripts/char_controller.gd" id="1_potpo"]
+[ext_resource type="Script" path="res://CharController3D/scripts/camera_pivot.gd" id="2_lqof1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76a1q"]
 albedo_color = Color(0.992157, 0.313726, 0.290196, 1)
@@ -22,15 +23,21 @@ height = 1.75
 [node name="CharController" type="CharacterBody3D"]
 script = ExtResource("1_potpo")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="BodyPivot" type="Node3D" parent="."]
 
-[node name="BodyMesh" type="MeshInstance3D" parent="Pivot"]
+[node name="BodyMesh" type="MeshInstance3D" parent="BodyPivot"]
 mesh = SubResource("CapsuleMesh_1uvts")
 skeleton = NodePath("../..")
 
-[node name="VisorMesh" type="MeshInstance3D" parent="Pivot"]
+[node name="VisorMesh" type="MeshInstance3D" parent="BodyPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250212, -0.45848)
 mesh = SubResource("BoxMesh_f0dcm")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_h1no7")
+
+[node name="CameraPivot" type="SpringArm3D" parent="."]
+script = ExtResource("2_lqof1")
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
