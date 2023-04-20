@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2x3yxpscr0x7"]
+
+[ext_resource type="Script" path="res://CharController3D/scripts/char_controller.gd" id="1_potpo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1uvts"]
+height = 1.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h1no7"]
+height = 1.75
+
+[node name="CharController" type="CharacterBody3D"]
+script = ExtResource("1_potpo")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("CapsuleMesh_1uvts")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_h1no7")
