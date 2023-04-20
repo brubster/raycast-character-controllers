@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
+
 ### 
 ### char_controller.gd
 ### 
+
 
 @export var speed: float = 14.0
 @export var fall_acceleration: float = 75.0
@@ -40,13 +42,13 @@ func _physics_process(delta):
 func get_input_vector() -> Vector3:
 	var input: Vector3 = Vector3.ZERO
 	
-	if Input.is_action_pressed("move_forward"):
+	if Input.get_action_strength("move_forward"):
 		input.z -= 1
-	if Input.is_action_pressed("move_backward"):
+	if Input.get_action_strength("move_backward"):
 		input.z += 1
-	if Input.is_action_pressed("move_right"):
+	if Input.get_action_strength("move_right"):
 		input.x += 1
-	if Input.is_action_pressed("move_left"):
+	if Input.get_action_strength("move_left"):
 		input.x -= 1
 	
 	if input != Vector3.ZERO:

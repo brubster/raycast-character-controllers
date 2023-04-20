@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bonuwl532vejb"]
+[gd_scene load_steps=6 format=3 uid="uid://bonuwl532vejb"]
 
 [ext_resource type="PackedScene" uid="uid://d2x3yxpscr0x7" path="res://CharController3D/scenes/char_controller.tscn" id="1_kya54"]
+[ext_resource type="Texture2D" uid="uid://baa4p5pyepbvg" path="res://Textures/png/kenney-prototype/texture_01.png" id="2_x0alk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6063"]
 size = Vector3(60, 2, 60)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrarl"]
-albedo_color = Color(0.509804, 0.509804, 0.509804, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpfc6"]
+albedo_texture = ExtResource("2_x0alk")
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uecpx"]
-material = SubResource("StandardMaterial3D_vrarl")
 size = Vector3(60, 2, 60)
 
 [node name="CharController3D" type="Node"]
@@ -30,4 +31,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_h6063")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Ground"]
+material_override = SubResource("StandardMaterial3D_cpfc6")
 mesh = SubResource("BoxMesh_uecpx")

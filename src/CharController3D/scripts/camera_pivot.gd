@@ -1,10 +1,10 @@
 extends SpringArm3D
 
+
 @export var sensitivity: float = 1.0
 @export var camera_distance: float = 5.0
 
 @onready var char_controller: Node3D = get_node("../BodyPivot")
-@onready var camera: Node3D = $CameraPivot/Camera
 
 
 func _ready():
