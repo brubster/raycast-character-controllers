@@ -1,0 +1,2 @@
+lerp camera when moving
+jumping

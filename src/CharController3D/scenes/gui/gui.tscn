@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8txvem7fubj8"]
+
+[ext_resource type="Script" path="res://CharController3D/scripts/gui/gui.gd" id="1_vgppl"]
+[ext_resource type="PackedScene" uid="uid://dtmp5r84hcv1h" path="res://CharController3D/scenes/gui/pause_menu.tscn" id="2_cgwhk"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_vgppl")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_cgwhk")]
+visible = false
+layout_mode = 1
+
+[connection signal="visibility_changed" from="PauseMenu" to="." method="_on_pause_menu_visibility_changed"]
