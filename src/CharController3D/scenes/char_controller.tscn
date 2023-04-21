@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2x3yxpscr0x7"]
+[gd_scene load_steps=11 format=3 uid="uid://d2x3yxpscr0x7"]
 
 [ext_resource type="Script" path="res://CharController3D/scripts/char_controller.gd" id="1_potpo"]
 [ext_resource type="PackedScene" uid="uid://ctbkqa0tcn1hc" path="res://CharController3D/scenes/camera_rig.tscn" id="2_6b156"]
@@ -20,7 +20,70 @@ albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
 material = SubResource("StandardMaterial3D_k54e4")
 size = Vector3(0.6, 0.25, 0.25)
 
+[sub_resource type="Animation" id="Animation_j8ium"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/BodyMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodyPivot/VisorMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0.161576, -0.451662), Vector3(0, 0.262, -0.452)]
+}
+
+[sub_resource type="Animation" id="Animation_ixfm8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/BodyMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodyPivot/VisorMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.161576, -0.451662)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8gt8"]
+_data = {
+"RESET": SubResource("Animation_ixfm8"),
+"idle": SubResource("Animation_j8ium")
+}
+
 [node name="CharController" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0597822, 0)
 script = ExtResource("1_potpo")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -43,3 +106,8 @@ mesh = SubResource("BoxMesh_f0dcm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 
 [node name="RayCast" type="RayCast3D" parent="BottomPivot"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j8gt8")
+}

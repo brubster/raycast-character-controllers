@@ -17,11 +17,12 @@ extends CharacterBody3D
 @export var ride_spring_damp: float = 0.75
 
 @onready var camera_rig: Node3D = $CameraRig
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var pivot: Node3D = $BodyPivot
 @onready var raycast: RayCast3D = $BottomPivot/RayCast
 
-var movement_input: Vector3 = Vector3.ZERO
 var jump_input: float = 0.0
+var can_move: bool = true
 
 var target_velocity: Vector3 = Vector3.ZERO
 
@@ -30,6 +31,7 @@ func _ready() -> void:
 	# Setup RayCast
 	raycast.target_position = Vector3(0.0, (-2 * ride_height), 0.0)
 	raycast.add_exception(self)
+	animation_player.play("idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -41,12 +43,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	update_movement_input_vector()
-
-
 # Update the character's target GROUND velocity
 func update_ground_velocity(_delta: float) -> void:
+	var movement_input: Vector3 = get_movement_input_vector()
 	# Convert input vector to in-game target direction
 	var direction: Vector3 = \
 		movement_input.rotated(Vector3.UP, camera_rig.rotation.y).normalized()
@@ -58,7 +57,6 @@ func update_ground_velocity(_delta: float) -> void:
 	# Update ground velocity
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
-	movement_input = Vector3.ZERO
 
 
 # Update the character's target AIR velocity
@@ -84,15 +82,22 @@ func update_vertical_velocity(delta: float) -> void:
 	target_velocity.y -= (fall_accel * delta) # Gravity
 
 
-# Returns a normalized input vector, or Vector3.ZERO
-func update_movement_input_vector() -> Vector3:
-	movement_input.z -= Input.get_action_strength("move_forward")
-	movement_input.z += Input.get_action_strength("move_backward")
-	movement_input.x += Input.get_action_strength("move_right")
-	movement_input.x -= Input.get_action_strength("move_left")
+func get_movement_input_vector() -> Vector3:
+	var input: Vector3 = Vector3.ZERO
+	if not can_move:
+		return input
 	
-	if movement_input.length_squared() > 1:
-		movement_input = movement_input.normalized()
+	input.z -= Input.get_action_strength("move_forward")
+	input.z += Input.get_action_strength("move_backward")
+	input.x += Input.get_action_strength("move_right")
+	input.x -= Input.get_action_strength("move_left")
 	
-	return movement_input
+	if input.length_squared() > 1:
+		input = input.normalized()
+	
+	return input
+
+
+func _on_gui_can_move(val: bool) -> void:
+	can_move = val
 

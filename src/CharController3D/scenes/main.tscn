@@ -53,4 +53,6 @@ visible = false
 
 [node name="GUI" parent="." instance=ExtResource("1_2dhgd")]
 
+[connection signal="can_move" from="GUI" to="CharController" method="_on_gui_can_move"]
+
 [editable path="Environment/ScuffedMap"]

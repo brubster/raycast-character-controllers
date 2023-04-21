@@ -16,13 +16,7 @@ script = ExtResource("1_vgppl")
 
 [node name="FramerateCounter" parent="." instance=ExtResource("3_jvexs")]
 layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 1
-grow_vertical = 1
+mouse_filter = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_cgwhk")]
 visible = false
