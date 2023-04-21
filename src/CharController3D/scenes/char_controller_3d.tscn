@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bonuwl532vejb"]
+[gd_scene load_steps=8 format=3 uid="uid://bonuwl532vejb"]
 
 [ext_resource type="PackedScene" uid="uid://d2x3yxpscr0x7" path="res://CharController3D/scenes/char_controller.tscn" id="1_kya54"]
 [ext_resource type="Texture2D" uid="uid://baa4p5pyepbvg" path="res://Textures/png/kenney-prototype/texture_01.png" id="2_x0alk"]
+[ext_resource type="PackedScene" uid="uid://ck50vtdght2un" path="res://ScuffedMap.glb" id="3_lvikd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6063"]
 size = Vector3(60, 2, 60)
@@ -12,6 +13,10 @@ uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uecpx"]
 size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btuve"]
+albedo_texture = ExtResource("2_x0alk")
+uv1_scale = Vector3(30, 30, 30)
 
 [node name="CharController3D" type="Node"]
 
@@ -26,6 +31,7 @@ shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground"]
 shape = SubResource("BoxShape3D_h6063")
@@ -33,3 +39,13 @@ shape = SubResource("BoxShape3D_h6063")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Ground"]
 material_override = SubResource("StandardMaterial3D_cpfc6")
 mesh = SubResource("BoxMesh_uecpx")
+
+[node name="ScuffedMap" parent="Environment" instance=ExtResource("3_lvikd")]
+
+[node name="Map" parent="Environment/ScuffedMap" index="0"]
+material_override = SubResource("StandardMaterial3D_btuve")
+
+[node name="CollisionShape3D" parent="Environment/ScuffedMap/Map/StaticBody3D" index="0"]
+visible = false
+
+[editable path="Environment/ScuffedMap"]

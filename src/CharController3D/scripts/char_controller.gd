@@ -13,8 +13,8 @@ extends CharacterBody3D
 @export var ride_height: float = 0.5
 
 # Spring values
-@export var ride_spring_strength: float = 10.0
-@export var ride_spring_damp: float = 1.0
+@export var ride_spring_strength: float = 12.0
+@export var ride_spring_damp: float = 0.75
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var pivot: Node3D = $BodyPivot
