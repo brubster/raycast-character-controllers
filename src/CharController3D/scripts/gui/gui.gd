@@ -8,6 +8,7 @@ extends Control
 @onready var pause_menu: Control = $PauseMenu
 
 
+# Catch input if menu(s) are visible
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
 		if not pause_menu.is_visible():
@@ -16,9 +17,9 @@ func _input(event: InputEvent) -> void:
 		else:
 			pause_menu.hide()
 			accept_event()
-	elif event is InputEventKey:
-		#get_viewport().set_input_as_handled()
-		accept_event()
+	#if event is InputEventKey:
+	#	if pause_menu.is_visible():
+	#		accept_event()
 
 
 # Pause Menu Visibility Changed

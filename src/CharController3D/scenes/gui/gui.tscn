@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8txvem7fubj8"]
+[gd_scene load_steps=4 format=3 uid="uid://b8txvem7fubj8"]
 
 [ext_resource type="Script" path="res://CharController3D/scripts/gui/gui.gd" id="1_vgppl"]
 [ext_resource type="PackedScene" uid="uid://dtmp5r84hcv1h" path="res://CharController3D/scenes/gui/pause_menu.tscn" id="2_cgwhk"]
+[ext_resource type="PackedScene" uid="uid://cgptiflm7x7gd" path="res://CharController3D/scenes/gui/framerate_counter.tscn" id="3_jvexs"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -12,6 +13,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_vgppl")
+
+[node name="FramerateCounter" parent="." instance=ExtResource("3_jvexs")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_cgwhk")]
 visible = false

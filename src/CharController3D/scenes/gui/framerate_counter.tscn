@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgptiflm7x7gd"]
+
+[ext_resource type="Script" path="res://CharController3D/scripts/gui/framerate_counter.gd" id="1_eqnrq"]
+
+[node name="FramerateCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_eqnrq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.025
+anchor_right = 0.097
+anchor_bottom = 0.08
+offset_left = -0.128
+offset_top = -0.200001
+offset_right = 0.255997
+offset_bottom = 0.159996
+mouse_filter = 2
+
+[node name="Counter" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -20,7 +20,9 @@ extends CharacterBody3D
 @onready var pivot: Node3D = $BodyPivot
 @onready var raycast: RayCast3D = $BottomPivot/RayCast
 
-var input: Vector3 = Vector3.ZERO
+var movement_input: Vector3 = Vector3.ZERO
+var jump_input: float = 0.0
+
 var target_velocity: Vector3 = Vector3.ZERO
 
 
@@ -33,7 +35,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	update_ground_velocity(delta)
 	update_vertical_velocity(delta)
-	input = Vector3.ZERO
 	
 	# Update CharacterBody3D velocity and move
 	velocity = target_velocity
@@ -41,14 +42,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	update_input_vector()
+	update_movement_input_vector()
 
 
 # Update the character's target GROUND velocity
 func update_ground_velocity(_delta: float) -> void:
 	# Convert input vector to in-game target direction
 	var direction: Vector3 = \
-			input.rotated(Vector3.UP, camera_rig.rotation.y).normalized()
+		movement_input.rotated(Vector3.UP, camera_rig.rotation.y).normalized()
 	
 	# Look toward target direction
 	if direction != Vector3.ZERO:
@@ -57,6 +58,7 @@ func update_ground_velocity(_delta: float) -> void:
 	# Update ground velocity
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
+	movement_input = Vector3.ZERO
 
 
 # Update the character's target AIR velocity
@@ -83,14 +85,14 @@ func update_vertical_velocity(delta: float) -> void:
 
 
 # Returns a normalized input vector, or Vector3.ZERO
-func update_input_vector() -> Vector3:
-	input.z -= Input.get_action_strength("move_forward")
-	input.z += Input.get_action_strength("move_backward")
-	input.x += Input.get_action_strength("move_right")
-	input.x -= Input.get_action_strength("move_left")
+func update_movement_input_vector() -> Vector3:
+	movement_input.z -= Input.get_action_strength("move_forward")
+	movement_input.z += Input.get_action_strength("move_backward")
+	movement_input.x += Input.get_action_strength("move_right")
+	movement_input.x -= Input.get_action_strength("move_left")
 	
-	if input.length_squared() > 1:
-		input = input.normalized()
+	if movement_input.length_squared() > 1:
+		movement_input = movement_input.normalized()
 	
-	return input
+	return movement_input
 

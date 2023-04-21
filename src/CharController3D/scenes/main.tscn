@@ -23,8 +23,6 @@ uv1_triplanar = true
 
 [node name="Main" type="Node"]
 
-[node name="GUI" parent="." instance=ExtResource("1_2dhgd")]
-
 [node name="CharController" parent="." instance=ExtResource("1_kx15b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
@@ -52,5 +50,7 @@ material_override = SubResource("StandardMaterial3D_ytvjo")
 
 [node name="CollisionShape3D" parent="Environment/ScuffedMap/Map/StaticBody3D" index="0"]
 visible = false
+
+[node name="GUI" parent="." instance=ExtResource("1_2dhgd")]
 
 [editable path="Environment/ScuffedMap"]
