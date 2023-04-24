@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cucjpoxkd3gyu"]
+
+[ext_resource type="PackedScene" uid="uid://ck50vtdght2un" path="res://ScuffedMap.glb" id="1_brjbw"]
+[ext_resource type="Texture2D" uid="uid://c4gawwaqwmyn4" path="res://Textures/png/kenney-prototype/texture_12.png" id="2_6e8il"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2u1a"]
+albedo_texture = ExtResource("2_6e8il")
+uv1_triplanar = true
+
+[node name="ScuffedMap" instance=ExtResource("1_brjbw")]
+
+[node name="Map" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_i2u1a")

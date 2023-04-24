@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbgf4mmr6gtar"]
+
+[ext_resource type="Script" path="res://ThirdPersonCharController/scripts/third_person_char_controller.gd" id="1_r8ayh"]
+[ext_resource type="PackedScene" uid="uid://8noqw4vvuv3f" path="res://ThirdPersonCharController/scenes/camera_rig.tscn" id="2_ik8jp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5pm8a"]
+points = PackedVector3Array(0, 0, 0.5, 0, 0, -0.5, 0.5, 0, 0, -0.5, 0, 0, 0, 0.75, 0, 0, -0.75, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cc6yc"]
+albedo_color = Color(0.992157, 0.313726, 0.290196, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1uvts"]
+material = SubResource("StandardMaterial3D_cc6yc")
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_068bs"]
+albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f0dcm"]
+material = SubResource("StandardMaterial3D_068bs")
+size = Vector3(0.6, 0.25, 0.25)
+
+[node name="ThirdPersonCharController" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0597822, 0)
+script = ExtResource("1_r8ayh")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_5pm8a")
+
+[node name="CameraRig" parent="." instance=ExtResource("2_ik8jp")]
+target_path = NodePath("../BodyPivot")
+
+[node name="BodyPivot" type="Node3D" parent="."]
+
+[node name="BodyMesh" type="MeshInstance3D" parent="BodyPivot"]
+mesh = SubResource("CapsuleMesh_1uvts")
+skeleton = NodePath("../..")
+
+[node name="VisorMesh" type="MeshInstance3D" parent="BodyPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.161576, -0.451662)
+mesh = SubResource("BoxMesh_f0dcm")
+
+[node name="BottomPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+
+[node name="SpringRayCast" type="RayCast3D" parent="BottomPivot"]
+
+[node name="GroundRayCast" type="RayCast3D" parent="BottomPivot"]

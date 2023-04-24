@@ -1,0 +1,3 @@
+Drag and drop 'gui.tscn' into desired scene. Click on the node it instantiated and
+open the 'Node' tab in the Inspector. Click on the can_move signal and connect it
+to a CharController.

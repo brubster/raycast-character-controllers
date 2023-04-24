@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgptiflm7x7gd"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://CharController3D/scripts/gui/framerate_counter.gd" id="1_eqnrq"]
+[ext_resource type="Script" path="res://GUI/scripts/framerate_counter.gd" id="1_eqnrq"]
 
 [node name="FramerateCounter" type="Control"]
 layout_mode = 3

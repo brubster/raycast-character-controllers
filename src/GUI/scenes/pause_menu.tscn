@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtmp5r84hcv1h"]
+[gd_scene load_steps=2 format=3 uid="uid://buj4fbirvuhnk"]
 
-[ext_resource type="Script" path="res://CharController3D/scripts/gui/pause_menu.gd" id="1_mm130"]
+[ext_resource type="Script" path="res://GUI/scripts/pause_menu.gd" id="1_8i857"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mm130")
+script = ExtResource("1_8i857")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -41,7 +41,7 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "CharController3D"
+text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 

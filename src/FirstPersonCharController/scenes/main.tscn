@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddoksuxyijxn7"]
+
+[ext_resource type="PackedScene" uid="uid://cucjpoxkd3gyu" path="res://FirstPersonCharController/scenes/scuffed_map.tscn" id="1_nmlfi"]
+[ext_resource type="PackedScene" uid="uid://bmqtj6x65i4s1" path="res://FirstPersonCharController/scenes/first_person_char_controller.tscn" id="1_uc46r"]
+[ext_resource type="PackedScene" uid="uid://bgnk8fljyk253" path="res://GUI/gui.tscn" id="2_0knen"]
+
+[node name="Main" type="Node"]
+
+[node name="FirstPersonCharController" parent="." instance=ExtResource("1_uc46r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="ScuffedMap" parent="." instance=ExtResource("1_nmlfi")]
+
+[node name="GUI" parent="." instance=ExtResource("2_0knen")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, 1, 0, -1, -2.98023e-08, 0, 0, 0)
+
+[connection signal="can_move" from="GUI" to="FirstPersonCharController" method="_on_gui_can_move"]

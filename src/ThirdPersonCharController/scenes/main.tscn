@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bt61si228t3v3"]
+[gd_scene load_steps=10 format=3]
 
-[ext_resource type="PackedScene" uid="uid://b8txvem7fubj8" path="res://CharController3D/scenes/gui/gui.tscn" id="1_2dhgd"]
-[ext_resource type="PackedScene" uid="uid://d2x3yxpscr0x7" path="res://CharController3D/scenes/char_controller.tscn" id="1_kx15b"]
+[ext_resource type="PackedScene" uid="uid://bgnk8fljyk253" path="res://GUI/gui.tscn" id="1_2dhgd"]
+[ext_resource type="PackedScene" uid="uid://c8ruvvfui0crc" path="res://ThirdPersonCharController/scenes/third_person_char_controller.tscn" id="1_utxi0"]
 [ext_resource type="Texture2D" uid="uid://baa4p5pyepbvg" path="res://Textures/png/kenney-prototype/texture_01.png" id="2_eccdj"]
 [ext_resource type="PackedScene" uid="uid://ck50vtdght2un" path="res://ScuffedMap.glb" id="3_lyksc"]
 [ext_resource type="Texture2D" uid="uid://c4gawwaqwmyn4" path="res://Textures/png/kenney-prototype/texture_12.png" id="4_m772h"]
@@ -23,8 +23,8 @@ uv1_triplanar = true
 
 [node name="Main" type="Node"]
 
-[node name="CharController" parent="." instance=ExtResource("1_kx15b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="CharController" parent="." instance=ExtResource("1_utxi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66247, 0)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -52,7 +52,5 @@ material_override = SubResource("StandardMaterial3D_ytvjo")
 visible = false
 
 [node name="GUI" parent="." instance=ExtResource("1_2dhgd")]
-
-[connection signal="can_move" from="GUI" to="CharController" method="_on_gui_can_move"]
 
 [editable path="Environment/ScuffedMap"]
