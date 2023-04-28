@@ -23,6 +23,8 @@ size = Vector3(0.6, 0.25, 0.25)
 [node name="ThirdPersonCharController" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0597822, 0)
 script = ExtResource("1_r8ayh")
+speed = 10.0
+jump_force = 20.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_5pm8a")
